@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Browse Hipobuy Spreadsheet finds</title>
+  <meta name="description" content="Browse 4,000+ Hipobuy Spreadsheet finds with USD prices, QC flags and Hipobuy checkout links." />
+  <link rel="icon" href="img/logo.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-page="shop">
+  <header class="topbar">
+    <div class="wrap topbar-row">
+      <a class="brand" href="index.html">
+        <img src="img/logo.png" alt="" />
+        <span class="brand-name">hipobuy<b>spreadsheet</b></span>
+      </a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="guides/index.html">Guide</a>
+        <a href="agents/index.html">Agents</a>
+        <a href="how-to-buy.html">Help Center</a>
+        <a class="pill is-on" href="browse.html">Spreadsheet ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap catalog">
+    <div class="catalog-intro">
+      <h1>All Hipobuy Spreadsheet finds</h1>
+      <p>The same catalog as the Kakobuy sheet — photos, prices and QC flags — then checkout on Hipobuy.</p>
+    </div>
+    <form class="catalog-search" action="browse.html" method="get">
+      <input id="shop-q" name="q" placeholder="Search brand, item, category…" />
+      <button class="btn btn-gold" type="submit">Search</button>
+    </form>
+    <div class="cat-chips" id="cat-chips">
+      <a href="browse.html">All</a>
+      <a href="browse.html?cat=shoes">Shoes</a>
+      <a href="browse.html?cat=t-shirts">T-Shirts</a>
+      <a href="browse.html?cat=hoodies">Hoodies</a>
+      <a href="browse.html?cat=jackets">Jackets</a>
+      <a href="browse.html?cat=pants">Pants/Shorts</a>
+      <a href="browse.html?cat=jersey">Jerseys</a>
+      <a href="browse.html?cat=headwear">Hats</a>
+      <a href="browse.html?cat=accessories">Accessories</a>
+      <a href="browse.html?cat=watches">Watches</a>
+    </div>
+    <div class="catalog-top">
+      <p id="shop-count">Loading catalog…</p>
+      <select id="sort">
+        <option value="latest">Default sorting</option>
+        <option value="popular">Sort by popularity</option>
+        <option value="rating">Sort by average rating</option>
+        <option value="price-asc">Sort by price: low to high</option>
+        <option value="price-desc">Sort by price: high to low</option>
+      </select>
+    </div>
+    <div class="product-grid" id="product-grid"></div>
+    <nav class="pager" id="pager"></nav>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap foot-note">© 2026 hipobuyspreadsheet — independent directory. <a href="privacy.html">Privacy Policy</a> · <a href="disclaimer.html">Disclaimer</a></div>
+  </footer>
+  <script src="js/data.js"></script>
+  <script src="js/catalog.js"></script>
+  <script src="js/shop.js"></script>
+</body>
+</html>

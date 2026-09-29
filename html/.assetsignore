@@ -1,0 +1,15 @@
+# Cloudflare Wrangler / Workers Static Assets — do not upload these
+.git
+**/.git/**
+.gitignore
+.assetsignore
+wrangler.toml
+*.py
+*.pyc
+__pycache__/
+*.xlsx
+.~*
+scripts/
+# Product photos are large; host via R2/CDN (symlink locally only)
+img/products/
+img/products/**
