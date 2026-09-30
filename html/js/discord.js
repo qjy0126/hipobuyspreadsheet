@@ -8,6 +8,21 @@
     document.head.appendChild(s);
   }
 
+  // Product photos are not on Cloudflare — rewrite to GitHub CDN in production.
+  (function rewriteProductImages() {
+    if (/^(localhost|127\.0\.0\.1)$/i.test(location.hostname)) return;
+    const base = "https://cdn.jsdelivr.net/gh/qjy0126/hipobuyspreadsheet@main/html/img/products/";
+    const run = () => {
+      document.querySelectorAll("img[src*='products/']").forEach((img) => {
+        const src = img.getAttribute("src") || "";
+        const m = src.match(/(\d+)\.webp/i);
+        if (m) img.src = base + m[1] + ".webp";
+      });
+    };
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", run);
+    else run();
+  })();
+
   if (document.querySelector(".discord-tab")) return;
   const href =
     (window.KF && KF.site && KF.site.discord) || "https://discord.gg/7DRMaMAADv";
