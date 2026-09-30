@@ -1,8 +1,10 @@
 name = "hipobuyspreadsheet"
 compatibility_date = "2026-09-29"
 
-# Deploy static site from html/
-# Product images are excluded via html/.assetsignore (serve from R2/CDN later)
+# Static site only — do not run `next build` on Cloudflare.
+# Product photos are excluded by html/.assetsignore (host via R2/CDN later).
+pages_build_output_dir = "html"
+
 [assets]
 directory = "./html"
 not_found_handling = "none"
