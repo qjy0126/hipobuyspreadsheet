@@ -109,6 +109,14 @@
       const b = document.querySelector(".pwa-install");
       if (b) b.hidden = true;
     });
+
+    if (!document.querySelector('script[data-kf-firebase]')) {
+      const fs = document.createElement("script");
+      fs.type = "module";
+      fs.dataset.kfFirebase = "1";
+      fs.src = root + "js/firebase-analytics.js";
+      document.head.appendChild(fs);
+    }
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
