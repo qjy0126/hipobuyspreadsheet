@@ -41,9 +41,8 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# Local-only product photos (~436MB symlink / copies) — keep off GitHub & Cloudflare
-html/img/products
-html/img/products/
+# Local-only tooling / caches — product photos ARE committed (served via GitHub CDN)
+# html/img/products stays in git; Cloudflare still skips it via html/.assetsignore
 
 # Python / local tooling
 __pycache__/

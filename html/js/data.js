@@ -24,11 +24,28 @@ KF.root = (function () {
   return "/";
 })();
 
+KF.cdn = "https://cdn.jsdelivr.net/gh/qjy0126/hipobuyspreadsheet@main/html/";
+
 KF.asset = (path) => {
   const s = String(path || "");
   if (!s) return s;
   if (/^https?:\/\//i.test(s)) return s;
-  return KF.root + s.replace(/^\.\//, "").replace(/^\//, "");
+  const rel = s.replace(/^\.\//, "").replace(/^\//, "");
+  // Product photos stay on GitHub CDN (too large for Cloudflare Workers assets).
+  if (/^img\/products\//i.test(rel) && !/^(localhost|127\.0\.0\.1)$/i.test(location.hostname)) {
+    return KF.cdn + rel;
+  }
+  return KF.root + rel;
+};
+
+KF.rewriteProductImages = function () {
+  if (/^(localhost|127\.0\.0\.1)$/i.test(location.hostname)) return;
+  const base = KF.cdn + "img/products/";
+  document.querySelectorAll("img[src*='products/']").forEach((img) => {
+    const src = img.getAttribute("src") || "";
+    const m = src.match(/(\d+)\.webp/i);
+    if (m) img.src = base + m[1] + ".webp";
+  });
 };
 
 KF.slugify = (text) => String(text || "")
@@ -158,9 +175,13 @@ KF.mountDiscord = function () {
 };
 
 if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", KF.mountDiscord);
+  document.addEventListener("DOMContentLoaded", () => {
+    KF.mountDiscord();
+    KF.rewriteProductImages();
+  });
 } else {
   KF.mountDiscord();
+  KF.rewriteProductImages();
 }
 
 (function loadPwa() {
