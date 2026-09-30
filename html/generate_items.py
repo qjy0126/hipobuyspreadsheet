@@ -234,11 +234,27 @@ def main() -> None:
         "/browse.html",
         "/how-to-buy.html",
         "/about.html",
+        "/privacy.html",
+        "/disclaimer.html",
         "/guides/index.html",
         "/agents/index.html",
     ]
+    for folder, prefix in (("guides", "/guides/"), ("agents", "/agents/"), ("c", "/c/")):
+        d = ROOT / folder
+        if d.exists():
+            for f in sorted(d.glob("*.html")):
+                if f.name == "index.html" and folder != "c":
+                    continue
+                path = f"{prefix}{f.name}"
+                if path not in static:
+                    static.append(path)
     urls = list(static) + [f"/item/{s}/" for s in slugs]
-    body = "\n".join(f"  <url><loc>{ORIGIN}{u}</loc><lastmod>{TODAY}</lastmod></url>" for u in urls)
+    body = "\n".join(
+        f"  <url><loc>{ORIGIN}{u}</loc><lastmod>{TODAY}</lastmod>"
+        f"<changefreq>{'daily' if u in ('/', '/browse.html') else 'weekly'}</changefreq>"
+        f"<priority>{'1.0' if u == '/' else '0.9' if u == '/browse.html' else '0.6'}</priority></url>"
+        for u in urls
+    )
     (ROOT / "sitemap.xml").write_text(
         '<?xml version="1.0" encoding="UTF-8"?>\n'
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
