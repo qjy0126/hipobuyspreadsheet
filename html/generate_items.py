@@ -11,7 +11,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 ORIGIN = "https://hipobuyspreadsheet.me"
-INVITE = "FINDS25"
+INVITE = "R71GHKM1I"
 TODAY = "2026-09-29"
 
 CAT_LABELS = {

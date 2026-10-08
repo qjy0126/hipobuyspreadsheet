@@ -126,7 +126,7 @@ KF.inCategory = (p, slug) => {
 };
 
 KF.money = (n) => `$${Number(n).toFixed(2)}`;
-KF.invite = { hipobuy: "FINDS25" };
+KF.invite = { hipobuy: "R71GHKM1I" };
 
 KF.listing = (sourceUrl) => {
   const url = String(sourceUrl || "");
